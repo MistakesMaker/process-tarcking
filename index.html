@@ -50,13 +50,13 @@
     <section class="card photos-card" aria-labelledby="photo-title">
       <div class="section-title"><div><p class="eyebrow">VISUAL PROGRESS</p><h2 id="photo-title">Progress photos</h2></div></div>
       <p class="intro">Take a photo or choose one from your phone. It will be saved with the selected log date.</p>
-      <label class="camera-button"><span class="camera-icon">⌁</span> Add a progress photo
-        <input id="photoInput" type="file" accept="image/*" capture="environment" aria-label="Add a progress photo" />
-      </label>
+      <button class="camera-button" id="openPhotoPicker" type="button"><span class="camera-icon">⌁</span> Add a progress photo</button>
+      <input id="photoInput" type="file" accept="image/*" capture="environment" aria-label="Add a progress photo" style="position:fixed;left:-10000px;top:-10000px;width:1px;height:1px;opacity:0" />
       <div id="photoGrid" class="photo-grid"></div>
     </section>
   </main>
   <template id="photoTemplate"><figure class="photo"><img alt="Progress photo" /><figcaption><span></span><button aria-label="Delete photo">×</button></figcaption></figure></template>
   <script src="app.js"></script>
+  <script>document.getElementById('openPhotoPicker').addEventListener('click',()=>document.getElementById('photoInput').click());</script>
 </body>
 </html>
