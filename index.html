@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#173b31" />
+  <title>Steady — Weight Loss Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <div><p class="eyebrow">YOUR DAILY CHECK-IN</p><h1>Small steps.<br><em>Real change.</em></h1></div>
+      <div class="date-chip" id="todayLabel"></div>
+    </header>
+
+    <section class="card daily-card" aria-labelledby="daily-title">
+      <div class="section-title"><div><p class="eyebrow">TODAY</p><h2 id="daily-title">Daily log</h2></div><label class="date-picker">Date <input type="date" id="logDate" /></label></div>
+      <div class="field-grid meals">
+        <label>Breakfast <span>kcal</span><input type="number" inputmode="numeric" min="0" id="breakfast" placeholder="0" /></label>
+        <label>Lunch <span>kcal</span><input type="number" inputmode="numeric" min="0" id="lunch" placeholder="0" /></label>
+        <label>Snack <span>kcal</span><input type="number" inputmode="numeric" min="0" id="snack" placeholder="0" /></label>
+        <label>Dinner <span>kcal</span><input type="number" inputmode="numeric" min="0" id="dinner" placeholder="0" /></label>
+        <label>Evening snack <span>kcal</span><input type="number" inputmode="numeric" min="0" id="eveningSnack" placeholder="0" /></label>
+      </div>
+      <div class="field-grid metrics">
+        <label>Weight <span>kg</span><input type="number" inputmode="decimal" step="0.1" min="0" id="weight" placeholder="e.g. 72.4" /></label>
+        <label>Calories burned <span>kcal</span><input type="number" inputmode="numeric" min="0" id="burned" placeholder="e.g. 2200" /></label>
+      </div>
+      <button class="primary" id="saveDay">Save daily check-in <span>→</span></button>
+    </section>
+
+    <section class="numbers" aria-label="Daily summary">
+      <article><p>FOOD TOTAL</p><strong id="foodTotal">0</strong><small>kcal eaten</small></article>
+      <article><p>DAILY BALANCE</p><strong id="balance">0</strong><small id="balanceNote">kcal remaining</small></article>
+      <article class="accent"><p>EST. FAT CHANGE</p><strong id="fatChange">0.00</strong><small>kg from today</small></article>
+    </section>
+    <p class="formula">Estimate: calorie deficit ÷ 7,700 kcal per kg of body fat. This is a long-term estimate, not a daily measurement.</p>
+
+    <section class="card progress-card" aria-labelledby="progress-title">
+      <div class="section-title"><div><p class="eyebrow">YOUR TREND</p><h2 id="progress-title">Progress</h2></div><span id="entriesCount" class="muted">No entries yet</span></div>
+      <div class="chart-tabs"><button class="active" data-chart="weight">Weight</button><button data-chart="fat">Estimated fat loss</button></div>
+      <div class="chart-wrap"><canvas id="progressChart" role="img" aria-label="Progress chart"></canvas><p class="empty-chart" id="emptyChart">Save a couple of check-ins to see your progress.</p></div>
+      <div class="chart-caption" id="chartCaption"></div>
+    </section>
+
+    <section class="card photos-card" aria-labelledby="photo-title">
+      <div class="section-title"><div><p class="eyebrow">VISUAL PROGRESS</p><h2 id="photo-title">Progress photos</h2></div></div>
+      <p class="intro">Take a photo or choose one from your phone. It will be saved with the selected log date.</p>
+      <label class="camera-button" for="photoInput"><span class="camera-icon">⌁</span> Add a progress photo</label>
+      <input id="photoInput" type="file" accept="image/*" capture="environment" hidden />
+      <div id="photoGrid" class="photo-grid"></div>
+    </section>
+  </main>
+  <template id="photoTemplate"><figure class="photo"><img alt="Progress photo" /><figcaption><span></span><button aria-label="Delete photo">×</button></figcaption></figure></template>
+  <script src="app.js"></script>
+</body>
+</html>
