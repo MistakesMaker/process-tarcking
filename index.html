@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="history.css" />
 </head>
 <body>
   <main>
@@ -45,6 +46,14 @@
       <div class="chart-tabs"><button class="active" data-chart="weight">Weight</button><button data-chart="fat">Estimated fat loss</button></div>
       <div class="chart-wrap"><canvas id="progressChart" role="img" aria-label="Progress chart"></canvas><p class="empty-chart" id="emptyChart">Save a couple of check-ins to see your progress.</p></div>
       <div class="chart-caption" id="chartCaption"></div>
+    </section>
+
+    <section class="card history-card" aria-labelledby="history-title">
+      <div class="section-title"><div><p class="eyebrow">SAVED DAYS</p><h2 id="history-title">Edit your history</h2></div><span id="historyCount" class="muted">No saved days</span></div>
+      <p class="intro">Select any day to review or correct its meals, weight, calories burned, or photos.</p>
+      <div id="historyList" class="history-list"></div>
+      <div class="backup-actions"><button id="exportData" type="button">Download backup</button><label for="importData">Restore backup</label><input id="importData" type="file" accept="application/json" hidden /></div>
+      <p class="backup-note">Your information stays on this device when the website is updated. Download a backup occasionally to keep a copy outside the browser.</p>
     </section>
 
     <section class="card photos-card" aria-labelledby="photo-title">
