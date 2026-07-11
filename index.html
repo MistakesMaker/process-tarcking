@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="history.css" />
   <link rel="stylesheet" href="foods.css" />
+  <link rel="stylesheet" href="quick-add.css" />
 </head>
 <body>
   <main>
@@ -21,6 +22,14 @@
 
     <section class="card daily-card" aria-labelledby="daily-title">
       <div class="section-title"><div><p class="eyebrow">TODAY</p><h2 id="daily-title">Daily log</h2></div><label class="date-picker">Date <input type="date" id="logDate" /></label></div>
+      <div class="quick-add" aria-label="Quickly add food to a meal">
+        <p>Quickly add a food</p>
+        <select id="quickMeal" aria-label="Meal"><option value="breakfast">Breakfast</option><option value="lunch">Lunch</option><option value="snack">Snack</option><option value="dinner">Dinner</option><option value="eveningSnack">Evening snack</option></select>
+        <input id="quickFood" list="quickFoodOptions" placeholder="Choose or type a food" aria-label="Food" />
+        <datalist id="quickFoodOptions"></datalist>
+        <input id="quickGrams" type="number" inputmode="numeric" min="1" placeholder="grams" aria-label="Grams" />
+        <button id="quickAdd" type="button">Add</button>
+      </div>
       <div class="field-grid meals">
         <label>Breakfast <span>kcal</span><input type="number" inputmode="numeric" min="0" id="breakfast" placeholder="0" /></label>
         <label>Lunch <span>kcal</span><input type="number" inputmode="numeric" min="0" id="lunch" placeholder="0" /></label>
@@ -83,6 +92,7 @@
   <template id="photoTemplate"><figure class="photo"><img alt="Progress photo" /><figcaption><span></span><button aria-label="Delete photo">×</button></figcaption></figure></template>
   <script src="app.js"></script>
   <script src="foods.js"></script>
+  <script src="quick-add.js"></script>
   <script>
     let cameraStream;
     const cameraPanel=document.getElementById('cameraPanel'),cameraPreview=document.getElementById('cameraPreview');
