@@ -50,12 +50,27 @@
     <section class="card photos-card" aria-labelledby="photo-title">
       <div class="section-title"><div><p class="eyebrow">VISUAL PROGRESS</p><h2 id="photo-title">Progress photos</h2></div></div>
       <p class="intro">Take a photo or choose one from your phone. It will be saved with the selected log date.</p>
-      <label class="photo-upload-label" for="photoInput">Add a progress photo</label>
-      <input id="photoInput" type="file" accept="image/*" capture="environment" aria-label="Add a progress photo" style="display:block;width:100%;padding:11px;border:1.5px dashed #9aaca0;border-radius:12px;background:#f5f8f1;color:#173b31;font:600 .85rem 'DM Sans',sans-serif" />
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <button id="startCamera" type="button" class="primary" style="margin:0">Take a photo</button>
+        <label for="photoInput" style="display:grid;place-items:center;border:1.5px dashed #9aaca0;border-radius:12px;background:#f5f8f1;cursor:pointer">Choose from gallery</label>
+      </div>
+      <input id="photoInput" type="file" accept="image/*" aria-label="Choose a progress photo from the gallery" style="display:block;width:100%;padding:11px;margin-top:10px;border:1.5px dashed #9aaca0;border-radius:12px;background:#f5f8f1;color:#173b31;font:600 .85rem 'DM Sans',sans-serif" />
+      <div id="cameraPanel" hidden style="margin-top:12px">
+        <video id="cameraPreview" autoplay playsinline muted style="width:100%;max-height:380px;object-fit:cover;border-radius:12px;background:#173b31"></video>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><button id="captureCameraPhoto" type="button" class="primary" style="margin:0">Use this photo</button><button id="cancelCamera" type="button" style="border:1px solid #e5ddd0;border-radius:11px;background:#fff;color:#173b31;font:700 .9rem 'DM Sans',sans-serif">Cancel</button></div>
+      </div>
       <div id="photoGrid" class="photo-grid"></div>
     </section>
   </main>
   <template id="photoTemplate"><figure class="photo"><img alt="Progress photo" /><figcaption><span></span><button aria-label="Delete photo">×</button></figcaption></figure></template>
   <script src="app.js"></script>
+  <script>
+    let cameraStream;
+    const cameraPanel=document.getElementById('cameraPanel'),cameraPreview=document.getElementById('cameraPreview');
+    const stopCamera=()=>{cameraStream?.getTracks().forEach(track=>track.stop());cameraStream=null;cameraPreview.srcObject=null;cameraPanel.hidden=true};
+    document.getElementById('startCamera').addEventListener('click',async()=>{try{cameraStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}},audio:false});cameraPreview.srcObject=cameraStream;cameraPanel.hidden=false}catch(error){alert('Camera could not be opened. Please allow camera access in Chrome settings, or choose a photo from your gallery.') }});
+    document.getElementById('cancelCamera').addEventListener('click',stopCamera);
+    document.getElementById('captureCameraPhoto').addEventListener('click',()=>{const canvas=document.createElement('canvas');canvas.width=cameraPreview.videoWidth;canvas.height=cameraPreview.videoHeight;canvas.getContext('2d').drawImage(cameraPreview,0,0);data.photos.push({id:crypto.randomUUID(),date:document.getElementById('logDate').value,src:canvas.toDataURL('image/jpeg',.9)});save();renderPhotos();stopCamera()});
+  </script>
 </body>
 </html>
