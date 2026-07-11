@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="history.css" />
+  <link rel="stylesheet" href="foods.css" />
 </head>
 <body>
   <main>
@@ -27,6 +28,7 @@
         <label>Dinner <span>kcal</span><input type="number" inputmode="numeric" min="0" id="dinner" placeholder="0" /></label>
         <label>Evening snack <span>kcal</span><input type="number" inputmode="numeric" min="0" id="eveningSnack" placeholder="0" /></label>
       </div>
+      <div id="mealBuilders" class="meal-builders"></div>
       <div class="field-grid metrics">
         <label>Weight <span>kg</span><input type="number" inputmode="decimal" step="0.1" min="0" id="weight" placeholder="e.g. 72.4" /></label>
         <label>Calories burned <span>kcal</span><input type="number" inputmode="numeric" min="0" id="burned" placeholder="e.g. 2200" /></label>
@@ -56,6 +58,13 @@
       <p class="backup-note">Your information stays on this device when the website is updated. Download a backup occasionally to keep a copy outside the browser.</p>
     </section>
 
+    <section class="card" aria-labelledby="foods-title">
+      <div class="section-title"><div><p class="eyebrow">YOUR FOOD LIBRARY</p><h2 id="foods-title">Foods &amp; calories</h2></div></div>
+      <p class="intro">Calories are per 100 g. Editing a value creates your personal setting and overrides the default.</p>
+      <div id="foodLibrary" class="food-library"></div>
+      <button id="addFood" type="button" class="primary">Add your own food <span>+</span></button>
+    </section>
+
     <section class="card photos-card" aria-labelledby="photo-title">
       <div class="section-title"><div><p class="eyebrow">VISUAL PROGRESS</p><h2 id="photo-title">Progress photos</h2></div></div>
       <p class="intro">Take a photo or choose one from your phone. It will be saved with the selected log date.</p>
@@ -73,6 +82,7 @@
   </main>
   <template id="photoTemplate"><figure class="photo"><img alt="Progress photo" /><figcaption><span></span><button aria-label="Delete photo">×</button></figcaption></figure></template>
   <script src="app.js"></script>
+  <script src="foods.js"></script>
   <script>
     let cameraStream;
     const cameraPanel=document.getElementById('cameraPanel'),cameraPreview=document.getElementById('cameraPreview');
