@@ -26,6 +26,7 @@
         <p>Quickly add a food</p>
         <select id="quickMeal" aria-label="Meal"><option value="breakfast">Breakfast</option><option value="lunch">Lunch</option><option value="snack">Snack</option><option value="dinner">Dinner</option><option value="eveningSnack">Evening snack</option></select>
         <select id="quickFood" aria-label="Food"></select>
+        <span id="quickFoodInfo" style="grid-column:2/-1;color:#52635a;font-size:.7rem;min-height:14px">Choose a food to see its calories.</span>
         <input id="quickGrams" type="number" inputmode="numeric" min="1" placeholder="grams" aria-label="Grams" />
         <button id="quickAdd" type="button">Add</button>
       </div>
@@ -36,7 +37,7 @@
         <label>Dinner <span>kcal</span><input type="number" inputmode="numeric" min="0" id="dinner" placeholder="0" /></label>
         <label>Evening snack <span>kcal</span><input type="number" inputmode="numeric" min="0" id="eveningSnack" placeholder="0" /></label>
       </div>
-      <div id="mealBuilders" class="meal-builders"></div>
+      <div id="mealBuilders" hidden></div>
       <div class="field-grid metrics">
         <label>Weight <span>kg</span><input type="number" inputmode="decimal" step="0.1" min="0" id="weight" placeholder="e.g. 72.4" /></label>
         <label>Calories burned <span>kcal</span><input type="number" inputmode="numeric" min="0" id="burned" placeholder="e.g. 2200" /></label>
