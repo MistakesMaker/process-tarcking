@@ -50,8 +50,9 @@
     <section class="card photos-card" aria-labelledby="photo-title">
       <div class="section-title"><div><p class="eyebrow">VISUAL PROGRESS</p><h2 id="photo-title">Progress photos</h2></div></div>
       <p class="intro">Take a photo or choose one from your phone. It will be saved with the selected log date.</p>
-      <label class="camera-button" for="photoInput"><span class="camera-icon">⌁</span> Add a progress photo</label>
-      <input id="photoInput" type="file" accept="image/*" capture="environment" hidden />
+      <label class="camera-button"><span class="camera-icon">⌁</span> Add a progress photo
+        <input id="photoInput" type="file" accept="image/*" capture="environment" aria-label="Add a progress photo" />
+      </label>
       <div id="photoGrid" class="photo-grid"></div>
     </section>
   </main>
