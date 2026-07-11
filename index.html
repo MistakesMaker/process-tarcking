@@ -100,7 +100,7 @@
     const stopCamera=()=>{cameraStream?.getTracks().forEach(track=>track.stop());cameraStream=null;cameraPreview.srcObject=null;cameraPanel.hidden=true};
     document.getElementById('startCamera').addEventListener('click',async()=>{try{cameraStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}},audio:false});cameraPreview.srcObject=cameraStream;cameraPanel.hidden=false}catch(error){alert('Camera could not be opened. Please allow camera access in Chrome settings, or choose a photo from your gallery.') }});
     document.getElementById('cancelCamera').addEventListener('click',stopCamera);
-    document.getElementById('captureCameraPhoto').addEventListener('click',()=>{const canvas=document.createElement('canvas');canvas.width=cameraPreview.videoWidth;canvas.height=cameraPreview.videoHeight;canvas.getContext('2d').drawImage(cameraPreview,0,0);data.photos.push({id:crypto.randomUUID(),date:document.getElementById('logDate').value,src:canvas.toDataURL('image/jpeg',.9)});save();renderPhotos();stopCamera()});
+    document.getElementById('captureCameraPhoto').addEventListener('click',()=>{const canvas=document.createElement('canvas');canvas.width=cameraPreview.videoWidth;canvas.height=cameraPreview.videoHeight;canvas.getContext('2d').drawImage(cameraPreview,0,0);addProgressPhoto(canvas.toDataURL('image/jpeg',.9),document.getElementById('logDate').value);stopCamera()});
   </script>
 </body>
 </html>
